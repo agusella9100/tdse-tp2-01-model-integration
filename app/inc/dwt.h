@@ -53,7 +53,7 @@ extern "C" {
 /*!< TRCENA: Enable trace and debug block DEMCR (Debug Exception and Monitor Control Register) */
 /*!< DWT Cycle Counter register */
 /*!< CYCCNTENA bit in DWT_CONTROL register */
- #define cycle_counter_init() ({\
+#define cycle_counter_init() ({\
 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;	/* enable DWT hardware */\
 	DWT->CYCCNT = 0;								/* reset cycle counter */\
 	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;			/* start counting */\
@@ -85,15 +85,15 @@ extern "C" {
  *
  *  ...
  *  ...														// => ______
- *																	 ___
+ *															//		 ___
  *  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET); 	// => __/
  *  // or => HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_8);
  *  cycle_counter_reset();
- *																  ______
+ *															//	  ______
  *  ...														// =>
  *
  *  cycle_counter = cycle_counter_get();
- *  cycle_counter_time_us = cycle_counter_time_us();			  __
+ *  cycle_counter_time_us = cycle_counter_time_us();		//	  __
  *  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);	// =>   \___
  *  // or => HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_8);
  *
